@@ -162,11 +162,11 @@ ComputeMarkers <- function(sobj, gap.gain, candidates, out.dir){
       sobj.markers$AUROC[j] <- roc.curve(scores.class0 = GetAssayData(sobj)[sobj.markers$gene[j],], weights.class0 = sobj@active.ident == sobj.markers$cluster[j])$auc
     }
     
-    top.10 <- sobj.markers %>% group_by(cluster) %>% top_n(10, avg_logFC)
+    top.10 <- sobj.markers %>% group_by(cluster) %>% top_n(10, avg_log2FC)
     ggsave(DoHeatmap(object = sobj, features = top.10$gene) + NoLegend(),
            filename = paste0(out.dir,"/",clustering.label,"_DE_genes_LCF.png"), units = "in", width = 12, height = 8)
     
-    out.xls[[clustering.label]] <- sobj.markers[,c("gene","p_val","avg_logFC","pct.1","pct.2","p_val_adj","cluster","AUROC")]
+    out.xls[[clustering.label]] <- sobj.markers[,c("gene","p_val","avg_log2FC ","pct.1","pct.2","p_val_adj","cluster","AUROC")]
     markers.all[[clustering.label]] <- sobj.markers
   }
   
