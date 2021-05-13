@@ -48,7 +48,7 @@ library(devtools)
     <p>Install IKAP </p>
 
 ```{r, eval = FALSE}
-devtools::install_github("NHLBI-BCB/IKAP")
+devtools::install_github("mr-september/IKAP")
 ```
   </li>
 </ol>
